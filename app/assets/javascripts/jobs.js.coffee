@@ -28,7 +28,7 @@ window.wellsure = window.wellsure or {}
   
   jobs.drawAllLines = ->
     jobs.clearAllLines()
-    for i in [0..(jobs.pickup_markers.length-2)]
+    for i in [0..(jobs.pickup_markers.length-1)]
       if jobs.rectangle.bounds.contains(jobs.pickup_markers[i].getPosition()) && jobs.rectangle.bounds.contains(jobs.dropoff_markers[i].getPosition())
         jobs.drawLine(jobs.pickup_markers[i], jobs.dropoff_markers[i])
     false
