@@ -14,6 +14,7 @@ window.wellsure = window.wellsure or {}
   
   jobs.drawLineFrom = (m) ->
     jobs.clearAllLines()
+    jobs.crtColor = 0
     for i in [0.. (jobs.pickup_markers.length-1)]
       if jobs.pickup_markers[i] == m || jobs.dropoff_markers[i] == m
         jobs.drawLine(jobs.pickup_markers[i], jobs.dropoff_markers[i])
@@ -28,6 +29,7 @@ window.wellsure = window.wellsure or {}
   
   jobs.drawAllLines = ->
     jobs.clearAllLines()
+    jobs.crtColor = 0
     for i in [0..(jobs.pickup_markers.length-1)]
       if jobs.rectangle.bounds.contains(jobs.pickup_markers[i].getPosition()) && jobs.rectangle.bounds.contains(jobs.dropoff_markers[i].getPosition())
         jobs.drawLine(jobs.pickup_markers[i], jobs.dropoff_markers[i])
