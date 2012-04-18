@@ -45,15 +45,15 @@ window.wellsure = window.wellsure or {}
       center: new google.maps.LatLng(51.507222, -0.1275)
       zoom: 12
       mapTypeId: google.maps.MapTypeId.ROADMAP
-      panControl: false
-      zoomControl: false
-      scaleControl: false
-      streetViewControl: false
-      overviewMapControl: false
-      mapTypeControl: false
-      draggable: false
-      minZoom: 12
-      maxZoom: 12
+      panControl: true
+      zoomControl: true
+      scaleControl: true
+      streetViewControl: true
+      overviewMapControl: true
+      mapTypeControl: true
+      draggable: true
+      minZoom: 10
+      maxZoom: 14
       
     jobs.map = new google.maps.Map $("#map_canvas")[0], options
     for job in gon.jobs
