@@ -31,6 +31,17 @@ window.wellsure = window.wellsure or {}
       position: new google.maps.LatLng(job.pickup_lat, job.pickup_lng)
       map: jobs.map
       icon: jobs.pinImage("0000FF")
+      
+    contentString = "<div class='job'><div class='title'><strong>Title: </strong>#{job.title}</div>" +
+      "<div class='pickup'><strong>Pickup: </strong>#{job.pickup}</div>" +
+      "<div class='dropoff'><strong>Drop-off: </strong>#{job.dropoff}</div></div>"
+        
+    infowindow = new google.maps.InfoWindow
+      content: contentString
+    
+    google.maps.event.addListener m_pickup, 'click', ->
+      infowindow.open(jobs.map, m_pickup)
+      
     jobs.pickup_markers.push(m_pickup)
   
   jobs.addDropoffMarker = (job) ->
@@ -38,6 +49,17 @@ window.wellsure = window.wellsure or {}
       position: new google.maps.LatLng(job.dropoff_lat, job.dropoff_lng)
       map: jobs.map
       icon: jobs.pinImage("FFFF00")
+      
+    contentString = "<div class='job'><div class='title'><strong>Title: </strong>#{job.title}</div>" +
+      "<div class='pickup'><strong>Pickup: </strong>#{job.pickup}</div>" +
+      "<div class='dropoff'><strong>Drop-off: </strong>#{job.dropoff}</div></div>"
+        
+    infowindow = new google.maps.InfoWindow
+      content: contentString
+    
+    google.maps.event.addListener m_dropoff, 'click', ->
+      infowindow.open(jobs.map, m_dropoff)
+    
     jobs.dropoff_markers.push(m_dropoff)
   
   jobs.addEditableRectangle = ->
@@ -66,7 +88,8 @@ window.wellsure = window.wellsure or {}
   jobs.listJobs = ->
     for job in gon.jobs
       if jobs.inArea(job, jobs.rectangle.getBounds())
-        console.log job.id
-    console.log "listing jobs"
+        $("li[data-job-id=#{job.id}]").show()
+      else
+        $("li[data-job-id=#{job.id}]").hide()
     
 ) window.wellsure.jobs = window.wellsure.jobs or {}, jQuery

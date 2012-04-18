@@ -1,6 +1,17 @@
 #map_canvas
 
 %ul.jobs_list
+  - @jobs.each do |j|
+    %li{"data-job-id" => j.id}
+      .title
+        %strong Title
+        = j.title
+      .pickup
+        %strong Pickup
+        = j.pickup
+      .dropoff
+        %strong Drop-off
+        = j.dropoff
 
 :javascript
   window.wellsure.jobs.initMap()
