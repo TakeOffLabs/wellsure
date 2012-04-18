@@ -2,8 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.1'
 
-gem 'mysql2'
-
+group :development do
+  gem 'mysql2'
+end
+  
+gem 'pg'
 gem 'json'
 gem 'haml'
 gem 'gon'
