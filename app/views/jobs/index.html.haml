@@ -1,14 +1,11 @@
-%table.legend
+.legend
   - Job::LEGEND.each do |l|
-    %tr
-      %td= image_tag "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|#{l[0]}"
-      %td= l[1]
-
-#map_canvas
-
-= link_to "Draw Routes in selected area", "#", class: "draw_all_lines"
+    = image_tag "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|#{l[0]}"
+    = l[1]
 
 %ul.jobs_list
+  %li.header
+    Jobs in selected area
   - @jobs.each do |j|
     %li{"data-job-id" => j.id}
       .title
@@ -20,6 +17,10 @@
       .dropoff
         %strong Drop-off
         = j.dropoff
+  %li
+    = link_to "Draw Routes", "#", class: "draw_all_lines button"
+        
+#map_canvas
 
 :javascript
   window.wellsure.jobs.initMap()

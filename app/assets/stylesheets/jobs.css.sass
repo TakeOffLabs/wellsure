@@ -3,8 +3,22 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body.jobs
+  .content
+    width: 960px
+    margin: 0 auto
   #map_canvas
-    width: 500px
+    width: 600px
     height: 500px
-  li.drop-off-outside
-    background-color: grey
+  ul
+    list-style-type: none
+    float: right
+    width: 320px
+  li
+    margin-bottom: 10px
+    padding: 5px
+    &.header
+      font-weight: bold
+      font-size: 16px
+    &.drop-off-outside
+      width: 300px
+      background-color: #dddddd

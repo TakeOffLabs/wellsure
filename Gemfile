@@ -7,6 +7,7 @@ gem 'mysql2'
 gem 'json'
 gem 'haml'
 gem 'gon'
+gem 'heroku'
 
 # Gems used only for assets and not required
 # in production environments by default.
