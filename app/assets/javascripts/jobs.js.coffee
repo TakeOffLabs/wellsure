@@ -7,6 +7,7 @@ window.wellsure = window.wellsure or {}
   jobs.map = undefined
   jobs.pickup_markers = []
   jobs.dropoff_markers = []
+  jobs.rectangle = undefined
   
   jobs.initMap = ->
     options =
@@ -17,6 +18,9 @@ window.wellsure = window.wellsure or {}
     for job in gon.jobs
       jobs.addPickupMarker(job)
       jobs.addDropoffMarker(job)
+    
+    jobs.addEditableRectangle()
+    jobs.listJobs()
       
   jobs.pinImage = (color) -> 
     new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + color,
@@ -35,5 +39,34 @@ window.wellsure = window.wellsure or {}
       map: jobs.map
       icon: jobs.pinImage("FFFF00")
     jobs.dropoff_markers.push(m_dropoff)
+  
+  jobs.addEditableRectangle = ->
+    jobs.rectangle = new google.maps.Rectangle
+    bounds = new google.maps.LatLngBounds()
+    
+    bounds.extend(new google.maps.LatLng(51.53, -0.10))
+    bounds.extend(new google.maps.LatLng(51.48, -0.14))
+    
+    rectOptions =
+      editable: true
+      strokeColor: "#FF0000"
+      strokeOpacity: 0.8
+      strokeWeight: 2
+      fillColor: "#FF0000"
+      fillOpacity: 0.35
+      map: jobs.map
+      bounds: bounds
+    jobs.rectangle.setOptions(rectOptions)
+    google.maps.event.addListener jobs.rectangle, "bounds_changed", ->
+      jobs.listJobs()
+  
+  jobs.inArea = (job, bound) ->
+    bound.contains(new google.maps.LatLng(job.pickup_lat, job.pickup_lng))
+    
+  jobs.listJobs = ->
+    for job in gon.jobs
+      if jobs.inArea(job, jobs.rectangle.getBounds())
+        console.log job.id
+    console.log "listing jobs"
     
 ) window.wellsure.jobs = window.wellsure.jobs or {}, jQuery
