@@ -1,5 +1,7 @@
 #map_canvas
 
+= link_to "Draw Routes in selected area", "#", class: "draw_all_lines"
+
 %ul.jobs_list
   - @jobs.each do |j|
     %li{"data-job-id" => j.id}
