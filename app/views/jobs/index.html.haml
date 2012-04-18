@@ -1,3 +1,9 @@
+%table.legend
+  - Job::LEGEND.each do |l|
+    %tr
+      %td= image_tag "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|#{l[0]}"
+      %td= l[1]
+
 #map_canvas
 
 = link_to "Draw Routes in selected area", "#", class: "draw_all_lines"
